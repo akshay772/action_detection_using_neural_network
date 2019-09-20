@@ -2,7 +2,7 @@ import sys
 import pandas as pd
 
 # filepath = sys.argv[ 1 ]
-names = ["label", "sent"]
+# names = ["label", "sent"]
 
 def read_data( filepath ) :
 	# no of columns founds in csv to read through
@@ -20,3 +20,18 @@ def read_data( filepath ) :
 	new_df.label = new_df.label.str.replace( " ", "" )
 	
 	return new_df
+
+def to_one_hot(y, n_class):
+	return np.eye(n_class)[y.astype(int)]
+
+def read_df_to_series(filepath, sample_ratio=1, no_class=2,  one_hot=True):
+	csv_file = read_data( filepath )
+	csv_file.label = csv_file.label.str.replace( "True", "1" )
+	csv_file.label = csv_file.label.str.replace( "False", "0" )
+	shuffle_csv = csv_file.sample( frac=sample_ratio )
+	x = pd.Series( shuffle_csv[ "sent" ] )
+	y = pd.Series( shuffle_csv[ "label" ] )
+	
+	if one_hot :
+		y = to_one_hot( y, no_class )
+	return x, y
