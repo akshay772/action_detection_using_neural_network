@@ -30,7 +30,7 @@ def convert_csv_list(filepath):
 
 def train_CNN(filepath):
 	texts, labels = convert_csv_list( filepath )
-	tokenizer = Tokenizer(num_words=25000)
+	tokenizer = Tokenizer(num_words=300)
 	tokenizer.fit_on_texts(texts)
 	sequences = tokenizer.texts_to_sequences(texts)
 	word_index = tokenizer.word_index
@@ -64,7 +64,7 @@ def train_CNN(filepath):
 		Y = labels_cat[train]
 		Y_test = labels_cat[test]
 		model = create_model(vocab_size+2,100,322,(3,),256,0.3)
-		model.fit(data[train],Y,epochs=10,batch_size=16)
+		model.fit(data[train],Y,epochs=100,batch_size=16)
 		scores = model.evaluate(data[test],Y_test,verbose=1)
 		# print("{} {}".format(model.metrics,scores))
 		cvscores.append(scores[1])
@@ -78,7 +78,7 @@ def train_CNN(filepath):
 	print(np.round(predicted))
 	print(labels_cat[t_data])
 	print(classification_report(labels_cat[t_data],np.round(predicted)))
-	print(confusion_matrix(np.argmax(labels_cat[t_data],axis=1),np.argmax(np.round(predicted),axis=1)))
+	print(confusion_matrix(np.argmax(labels_cat[t_data],axis=0),np.argmax(np.round(predicted),axis=0)))
 	# cvscores.append(scores)
 	model.save('./models/cl_CNN.h5')
 	pickle.dump(tokenizer,open('./models/tokenizer.p','wb'))

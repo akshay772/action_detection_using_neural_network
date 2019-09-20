@@ -16,5 +16,5 @@ def create_model( vocab_size, embedding_size, max_sentence_length, filter_sizes,
 	model.add( Activation( 'softmax' ) )
 	# model.compile(loss=keras.losses.categorical_crossentropy,optimzer=keras.optimizers.SGD(),
 	# metrics=['accuracy'])
-	model.compile( loss='binary_crossentropy', optimizer='rmsprop', metrics=[ 'accuracy' ] )
+	model.compile( loss='binary_crossentropy', optimizer='adam', metrics=[ 'accuracy' ] )
 	return model
