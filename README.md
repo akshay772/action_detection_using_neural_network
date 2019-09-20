@@ -15,6 +15,9 @@ A trained neural network model to detect whether a given sentence is an actionab
     
 * Convolutional Neural Network is trained :
     * Download the trained model and the tokenizer [here]() and paste them in "models" folder 
+    * Since Dataset consists of many outliers and false classified labels, the current accuracy will drop
+     and the model will not generalize. 
+    * Remedy is to feed more data to get the weightage of outliers drop to minimum.
     * The table for precision, f1 score and recall.
     
 ####
