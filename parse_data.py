@@ -2,7 +2,7 @@ import sys
 import pandas as pd
 
 # filepath = sys.argv[ 1 ]
-
+names = ["label", "sent"]
 
 def read_data( filepath ) :
 	# no of columns founds in csv to read through
@@ -18,6 +18,5 @@ def read_data( filepath ) :
 	new_df = new_df.reset_index()
 	del new_df[ "index" ]
 	new_df.label = new_df.label.str.replace( " ", "" )
-	new_train_test = new_df.values.tolist()
 	
-	return new_train_test
+	return new_df

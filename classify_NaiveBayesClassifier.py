@@ -8,7 +8,8 @@ import pickle
 # filepath = sys.argv[1]
 
 def train_NBC(filepath):
-	new_train_test = read_data(filepath)
+	new_df = read_data(filepath)
+	new_train_test = new_df.values.tolist()
 	x_train, x_test = train_test_split(new_train_test, test_size=0.1)
 	
 	cl = NaiveBayesClassifier(x_train)
