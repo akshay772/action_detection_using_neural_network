@@ -9,11 +9,9 @@ import pickle
 import numpy as np
 from parse_data import convert_csv_list
 from keras_cnn_model import create_model
-# from keras.utils import to_categorical
 
 from sklearn.model_selection import StratifiedKFold
-from sklearn.metrics import classification_report,confusion_matrix
-from sklearn.metrics import precision_score, f1_score, recall_score
+from sklearn.metrics import classification_report
 
 # filepath = "./old/train.csv"
 
@@ -28,17 +26,7 @@ def train_CNN(filepath):
 	data = pad_sequences(sequences, maxlen=322)
 	print("Length of training data {}".format(len(data)))
 	print("Shape of data {}".format(data.shape))
-	indices = np.arange(data.shape[0])
-	# np.random.shuffle(indices)
-	# print("Indices {}".format(indices))
-	# data = data[indices]
 	labels_cat = np.array(labels)
-	# labels_cat = to_categorical(labels)
-	print(type(labels_cat))
-	# labels = to_categorical(np.asarray(labels))  # this converts [0,0,1,1] to [[1..],[1...],[0 1 0...]..]
-	# print(labels)
-	# labels = labels[indices]
-
 
 	kfold = StratifiedKFold(n_splits=30, shuffle=True, random_state=12)
 	cvscores = []
@@ -60,7 +48,7 @@ def train_CNN(filepath):
 		cvscores.append(scores[1])
 		models.append(model)
 		test_data.append(test)
-	# print(cvscores)
+		
 	max_index=np.array(cvscores).argmax()
 	model = models[max_index]
 	t_data = test_data[max_index]
