@@ -25,11 +25,11 @@ A trained neural network model to detect whether a given sentence is an actionab
 ####
 |     Content   | precision  |  recall | f1-score |  support
 | ------------  | ---------  | ------- | -------- | ----------
-|      0        |     0.51   |   0.60  |    0.60  |    23      
-|      1        |     0.55   |   0.55  |    0.71  |    28   
-|   accuracy    |            |         |   0.55   |     50
-|   macro avg   |     0.27   |  0.50   |   0.35   |     50
-| weighted avg  |     0.30   |   0.55  |   0.39   |     50
+|      0        |     0.00   |   0.00  |    0.00  |    23      
+|      1        |     0.55   |   1.00  |    0.71  |    28   
+|   accuracy    |            |         |   0.55   |    51
+|   macro avg   |     0.27   |   0.50  |   0.35   |    51
+| weighted avg  |     0.30   |   0.55  |   0.39   |    51
 
 #### LSTM Recurrent Neural Network is trained :
 * Download the trained model and the tokenizer [here]() and paste them in "models" folder.
