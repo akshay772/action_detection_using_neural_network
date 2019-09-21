@@ -4,28 +4,14 @@ from keras.models import load_model
 
 import pickle
 import numpy as np
-from numpy import unravel_index
-from parse_data import read_data
+from parse_data import convert_csv_list
 from keras_cnn_model import create_model
-from keras.utils import to_categorical
+# from keras.utils import to_categorical
 
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import classification_report,confusion_matrix
 
 # filepath = "./old/train.csv"
-
-
-def convert_csv_list(filepath):
-	texts = []
-	labels = []
-	new_df = read_data( filepath )
-	new_df.label = new_df.label.str.replace( "True", "1" )
-	new_df.label = new_df.label.str.replace( "False", "0" )
-	texts = new_df.sent.values.tolist()
-	labels = new_df.label.values.tolist()
-	labels = list(map(int, labels))
-	
-	return texts, labels
 
 
 def train_CNN(filepath):
@@ -64,13 +50,13 @@ def train_CNN(filepath):
 		Y = labels_cat[train]
 		Y_test = labels_cat[test]
 		model = create_model(vocab_size+2,100,322,(3,),256,0.3)
-		model.fit(data[train],Y,epochs=100,batch_size=16)
+		model.fit(data[train],Y,epochs=10,batch_size=128)
 		scores = model.evaluate(data[test],Y_test,verbose=1)
 		# print("{} {}".format(model.metrics,scores))
 		cvscores.append(scores[1])
 		models.append(model)
 		test_data.append(test)
-	print(cvscores)
+	# print(cvscores)
 	max_index=np.array(cvscores).argmax()
 	model = models[max_index]
 	t_data = test_data[max_index]
@@ -78,7 +64,7 @@ def train_CNN(filepath):
 	print(np.round(predicted))
 	print(labels_cat[t_data])
 	print(classification_report(labels_cat[t_data],np.round(predicted)))
-	print(confusion_matrix(np.argmax(labels_cat[t_data],axis=0),np.argmax(np.round(predicted),axis=0)))
+	# print(confusion_matrix(np.argmax(labels_cat[t_data],axis=0),np.argmax(np.round(predicted),axis=0)))
 	# cvscores.append(scores)
 	model.save('./models/cl_CNN.h5')
 	pickle.dump(tokenizer,open('./models/tokenizer.p','wb'))

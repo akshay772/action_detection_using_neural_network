@@ -24,3 +24,16 @@ def read_data( filepath ) :
 
 def to_one_hot(y, n_class):
 	return np.eye(n_class)[y.astype(int)]
+
+
+def convert_csv_list( filepath ) :
+	texts = [ ]
+	labels = [ ]
+	new_df = read_data( filepath )
+	new_df.label = new_df.label.str.replace( "True", "1" )
+	new_df.label = new_df.label.str.replace( "False", "0" )
+	texts = new_df.sent.values.tolist()
+	labels = new_df.label.values.tolist()
+	labels = list( map( int, labels ) )
+	
+	return texts, labels
