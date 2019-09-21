@@ -15,6 +15,9 @@ A trained neural network model to detect whether a given sentence is an actionab
     
 #### Convolutional Neural Network is trained :
 * Download the trained model and the tokenizer [here](https://drive.google.com/open?id=1Zpt_zVloqJPMDpgjGEK0E089blgRm1wa) and paste them in "models" folder 
+* To train the model run : `python3 main_CNN.py /path/to/data/file`
+* To predict individual sentences run : `python3 main_CNN.py "example sentence to classify" /path
+/saved_model/ /path/saved_tokenizer` 
     * The current accuracy is dropping and the model is not generalizing. 
     * Remedy is to use another network architecture ie, memory based neural networks like LSTMs.
     * The table for precision, f1 score and recall.
@@ -30,6 +33,9 @@ A trained neural network model to detect whether a given sentence is an actionab
 
 #### LSTM Recurrent Neural Network is trained :
 * Download the trained model and the tokenizer [here]() and paste them in "models" folder.
+* To train the model run : `python3 main_LSTM.py /path/to/data/file`
+* To predict individual sentences run : `python3 main_LSTM.py "example sentence to classify" /paths
+/saved_model/ /path/saved_tokenizer`
     * The current accuracy `92%` on 20% validation set. 
     * Remedy is to use another network architecture ie, memory based neural networks like LSTMs.
     * The table for precision, f1 score and recall.
