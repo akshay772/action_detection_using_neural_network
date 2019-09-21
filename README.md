@@ -36,3 +36,5 @@ A trained neural network model to detect whether a given sentence is an actionab
     * Including pretrained glove vector
     * Increase the dataset, for deep learning large amount of data is required. Low recall, f1-score means
      model is not generalizing
+     * Introducing LSTM Recurrent Neural Networks to do the classification task may improve accuracy as
+      known for remembering past patterns
