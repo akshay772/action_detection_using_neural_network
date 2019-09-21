@@ -53,4 +53,4 @@ A trained neural network model to detect whether a given sentence is an actionab
 ### Need for improvement
 * Including pretrained glove vector embeddings to boost accuracy.
 * Increase the dataset, for deep learning large amount of data is required to boost accuracy.
-* Include K-fold cross validation in LSTM training module.s
+* Include K-fold cross validation in LSTM training module.
