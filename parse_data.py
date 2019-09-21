@@ -1,8 +1,5 @@
 from sklearn.model_selection import train_test_split
-from tensorflow.keras.preprocessing.sequence import pad_sequences
-from sklearn.utils import shuffle
 
-import tensorflow as tf
 import pandas as pd
 
 # filepath = sys.argv[ 1 ]
@@ -64,19 +61,6 @@ def read_df_to_series(filepath, sample_ratio=1, no_class=2,  one_hot=True):
 	return X_train, y_train, X_test, y_test
 
 
-def data_preprocessing(x_train, x_test, max_len, max_words=30000):
-	tokenizer = tf.keras.preprocessing.text.Tokenizer(num_words=max_words)
-	tokenizer.fit_on_texts(x_train)
-	# for converting raw text to input sequences to cnn
-	train_index = tokenizer.texts_to_sequences(x_train)
-	test_index = tokenizer.texts_to_sequences(x_test)
-	# introduce padding so every sequence will be equal length
-	train_padded = pad_sequences(train_index, maxlen=max_len, padding='post', truncating='post')
-	test_padded = pad_sequences(test_index, maxlen=max_len, padding='post', truncating='post')
-	
-	return train_padded, test_padded, max_words + 2
-
-
 def split_dataset(x_test, y_test, dev_ratio):
 	# split test dataset to test and dev set with ratio
 	test_size = len(x_test)
@@ -89,13 +73,3 @@ def split_dataset(x_test, y_test, dev_ratio):
 	y_test = y_test[dev_size:]
 	
 	return x_test, x_dev, y_test, y_dev, dev_size, test_size - dev_size
-
-
-# def fill_feed_dict(data_X, data_Y, batch_size):
-# 	# Generator to yield batches
-# 	# Shuffle data first
-# 	shuffled_X, shuffled_Y = shuffle(data_X, data_Y)
-# 	for idx in range(data_X.shape[0] // batch_size):
-# 		x_batch = shuffled_X[batch_size * idx: batch_size * (idx + 1)]
-# 		y_batch = shuffled_Y[batch_size * idx: batch_size * (idx + 1)]
-# 		yield x_batch, y_batch

@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings('ignore')
+
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import load_model
@@ -10,6 +13,7 @@ from keras_cnn_model import create_model
 
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import classification_report,confusion_matrix
+from sklearn.metrics import precision_score, f1_score, recall_score
 
 # filepath = "./old/train.csv"
 
@@ -50,9 +54,9 @@ def train_CNN(filepath):
 		Y = labels_cat[train]
 		Y_test = labels_cat[test]
 		model = create_model(vocab_size+2,100,322,(3,),256,0.3)
-		model.fit(data[train],Y,epochs=10,batch_size=128)
+		model.fit(data[train],Y,epochs=2,batch_size=128)
 		scores = model.evaluate(data[test],Y_test,verbose=1)
-		# print("{} {}".format(model.metrics,scores))
+		print("{} {}".format(model.metrics,scores))
 		cvscores.append(scores[1])
 		models.append(model)
 		test_data.append(test)
@@ -64,10 +68,10 @@ def train_CNN(filepath):
 	print(np.round(predicted))
 	print(labels_cat[t_data])
 	print(classification_report(labels_cat[t_data],np.round(predicted)))
-	# print(confusion_matrix(np.argmax(labels_cat[t_data],axis=0),np.argmax(np.round(predicted),axis=0)))
-	# cvscores.append(scores)
-	model.save('./models/cl_CNN.h5')
-	pickle.dump(tokenizer,open('./models/tokenizer.p','wb'))
+	# print(confusion_matrix(np.argmax(labels_cat[t_data]),np.argmax(np.round(predicted))))
+	cvscores.append(scores)
+	model.save('./models/cl_CNN_demo.h5')
+	pickle.dump(tokenizer,open('./models/tokenizer_demo.p','wb'))
 
 
 def predict_CNN(saved_model_path, saved_tokenizer_path, filepath):
