@@ -32,7 +32,7 @@ A trained neural network model to detect whether a given sentence is an actionab
 | weighted avg  |     0.30   |   0.55  |   0.39   |    51
 
 #### LSTM Recurrent Neural Network is trained :
-* Download the trained model and the tokenizer [here]() and paste them in "models" folder.
+* Download the trained model and the tokenizer [here](https://drive.google.com/open?id=1Qnn9nnRm4tDYnPo6wP9dqvsZfrhrE2tv) and paste them in "models" folder.
 * To train the model run : `python3 main_LSTM.py /path/to/data/file`
 * To predict individual sentences run : `python3 main_LSTM.py "example sentence to classify" /paths
 /saved_model/ /path/saved_tokenizer`

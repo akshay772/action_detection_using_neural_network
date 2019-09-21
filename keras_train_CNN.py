@@ -58,12 +58,12 @@ def train_CNN(filepath):
 	print(classification_report(labels_cat[t_data],np.round(predicted)))
 	# print(confusion_matrix(np.argmax(labels_cat[t_data]),np.argmax(np.round(predicted))))
 	cvscores.append(scores)
-	model.save('./models/cl_CNN_demo.h5')
-	pickle.dump(tokenizer,open('./models/tokenizer_demo.p','wb'))
+	model.save('./models/cl_CNN.h5')
+	pickle.dump(tokenizer,open('./models/tokenizer_CNN.p','wb'))
 
 
 def predict_CNN(saved_model_path, saved_tokenizer_path, filepath):
-	class_category = ["False", "True"]
+	class_category = ["True", "False"]
 	model = load_model(saved_model_path)
 	tokenizer = pickle.load(open(saved_tokenizer_path, "rb"))
 	
