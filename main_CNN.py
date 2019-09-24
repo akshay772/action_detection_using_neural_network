@@ -13,7 +13,7 @@ if not os.path.isfile(filepath):
 	if not os.path.isfile("./models/cl_CNN.h5"):
 		print("There is no model trained... run training module first.")
 		sys.exit()
-	if not os.path.isfile("./models/tokenizer.p"):
+	if not os.path.isfile("./models/tokenizer_CNN.p"):
 		print("Tokenizer is absent from the trained model. Paste it to models folder")
 		sys.exit()
 	# do sentence predicting
