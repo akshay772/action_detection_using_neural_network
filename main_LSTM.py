@@ -10,7 +10,7 @@ if not os.path.isfile( filepath ) :
 	print( "Model is saved in : %s", saved_model_path )
 	saved_tokenizer_path = sys.argv[ 3 ]
 	print( "Tokenizer is saved in : %s", saved_tokenizer_path )
-	if not os.path.isfile( "./models/cl_CNN.h5" ) :
+	if not os.path.isfile( "./models/cl_LSTM.h5" ) :
 		print( "There is no model trained... run training module first." )
 		sys.exit()
 	if not os.path.isfile( "./models/tokenizer.p" ) :
