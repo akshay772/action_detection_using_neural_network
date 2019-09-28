@@ -13,7 +13,7 @@ def create_model( vocab_size, embedding_size, max_sentence_length, filter_sizes,
 	model.add( Dropout( dropout ) )
 	model.add( Flatten() )
 	model.add( Dense( 1, activation='relu' ) )
-	model.add( Activation( 'softmax' ) )
+	model.add( Activation( 'sigmoid' ) )
 	# model.compile(loss=keras.losses.categorical_crossentropy,optimzer=keras.optimizers.SGD(),
 	# metrics=['accuracy'])
 	model.compile( loss='binary_crossentropy', optimizer='adam', metrics=[ 'accuracy' ] )

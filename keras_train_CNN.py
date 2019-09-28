@@ -11,7 +11,7 @@ from parse_data import convert_csv_list
 from keras_cnn_model import create_model
 
 from sklearn.model_selection import StratifiedKFold
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, confusion_matrix
 
 # filepath = "./old/train.csv"
 
@@ -28,7 +28,7 @@ def train_CNN(filepath):
 	print("Shape of data {}".format(data.shape))
 	labels_cat = np.array(labels)
 
-	kfold = StratifiedKFold(n_splits=30, shuffle=True, random_state=12)
+	kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state=12)
 	cvscores = []
 	models=[]
 	test_data=[]
@@ -42,14 +42,14 @@ def train_CNN(filepath):
 		Y = labels_cat[train]
 		Y_test = labels_cat[test]
 		model = create_model(vocab_size+2,100,322,(3,),256,0.3)
-		model.fit(data[train],Y,epochs=2,batch_size=128)
+		model.fit(data[train],Y,epochs=15,batch_size=128)
 		scores = model.evaluate(data[test],Y_test,verbose=1)
 		print("{} {}".format(model.metrics,scores))
 		cvscores.append(scores[1])
 		models.append(model)
 		test_data.append(test)
 		
-	max_index=np.array(cvscores).argmax()
+	max_index = np.array(cvscores).argmax()
 	model = models[max_index]
 	t_data = test_data[max_index]
 	predicted = model.predict(data[t_data])
