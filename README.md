@@ -21,18 +21,17 @@ A trained neural network model to detect whether a given sentence is an actionab
 * To train the model run : `python3 main_CNN.py /path/to/data/file`
 * To predict individual sentences run : `python3 main_CNN.py "example sentence to classify" /path
 /saved_model/ /path/saved_tokenizer`
-    * The current accuracy is dropping and the model is not generalizing.
-    * Remedy is to use another network architecture ie, memory based neural networks like LSTMs.
+    * The current accuracy `95%` on 20% validation set.
     * The table for precision, f1 score and recall.
 
 ####
 |     Content   | precision  |  recall | f1-score |  support
 | ------------  | ---------  | ------- | -------- | ----------
-|      0        |     0.00   |   0.00  |    0.00  |    23
-|      1        |     0.55   |   1.00  |    0.71  |    28
-|   accuracy    |            |         |   0.55   |    51
-|   macro avg   |     0.27   |   0.50  |   0.35   |    51
-| weighted avg  |     0.30   |   0.55  |   0.39   |    51
+|      0        |     0.98   |   0.90  |   0.94   |    69
+|      1        |     0.92   |   0.99  |   0.95   |    82
+|   accuracy    |            |         |   0.95   |    151
+|   macro avg   |     0.95   |   0.94  |   0.95   |    151
+| weighted avg  |     0.95   |   0.95  |   0.95   |    151
 
 #### LSTM Recurrent Neural Network is trained :
 * Download the trained model and the tokenizer [here](https://drive.google.com/open?id=1Qnn9nnRm4tDYnPo6wP9dqvsZfrhrE2tv) and paste them in "models" folder.

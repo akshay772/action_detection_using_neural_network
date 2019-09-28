@@ -30,8 +30,8 @@ def train_CNN(filepath):
 
 	kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state=12)
 	cvscores = []
-	models=[]
-	test_data=[]
+	models = []
+	test_data = []
 
 	""" Ready to train """
 	print(" data shape {}".format(data.shape))
